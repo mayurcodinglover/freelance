@@ -1,792 +1,1460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Codeloom Studio — Web Development for Growing Businesses</title>
-<meta name="description" content="Codeloom Studio builds fast, secure, custom web applications — from e-commerce to internal business systems.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spice & Ember — Modern Indian Fine Dining</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
-  :root{
-    --bg: #0B0F14;
-    --bg-soft: #11161D;
-    --panel: #161D26;
-    --line: #232C38;
-    --text: #E7ECF2;
-    --text-dim: #8B97A6;
-    --accent: #5EEAD4;
-    --accent-soft: #1B3A36;
-    --warn: #F5A623;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter', sans-serif;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,.display{
-    font-family:'Space Grotesk', sans-serif;
-    letter-spacing:-0.02em;
-  }
-  .mono{ font-family:'IBM Plex Mono', monospace; }
-  a{ color:inherit; text-decoration:none; }
-  img{max-width:100%;display:block;}
-  .wrap{
-    max-width:1180px;
-    margin:0 auto;
-    padding:0 32px;
-  }
-  ::selection{ background:var(--accent); color:#06141B; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* focus visibility */
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--accent);
-    outline-offset:3px;
+  :root {
+    --crimson: #C0392B;
+    --ember: #C0392B;
+    --gold: #9a6c00;
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --surface2: #F4F2EE;
+    --border: #E2DDD6;
+    --text: #1A1208;
+    --muted: #7A7265;
+    --display: 'Playfair Display', Georgia, serif;
+    --body: 'Inter', system-ui, sans-serif;
   }
 
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  /* ===== NAV ===== */
-  header{
-    position:fixed; top:0; left:0; right:0;
-    z-index:100;
-    background:rgba(11,15,20,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    background: rgba(250,250,248,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
   }
-  nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 32px;
-    max-width:1180px;
-    margin:0 auto;
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    cursor: pointer;
   }
-  .logo{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:700;
-    font-size:1.15rem;
-    display:flex;
-    align-items:center;
-    gap:8px;
+  .nav-logo span { color: var(--ember); }
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
   }
-  .logo .dot{ color:var(--accent); }
-  .nav-links{
-    display:flex; gap:36px;
-    font-size:0.92rem;
-    color:var(--text-dim);
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    cursor: pointer;
   }
-  .nav-links a:hover{ color:var(--text); }
-  .nav-cta{
-    background:var(--accent);
-    color:#06141B;
-    padding:10px 20px;
-    border-radius:6px;
-    font-weight:600;
-    font-size:0.88rem;
-    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  .nav-links a:hover, .nav-links a.active { color: var(--ember); }
+  .nav-cta {
+    background: var(--crimson);
+    color: #fff !important;
+    padding: 9px 22px;
+    border-radius: 3px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
   }
-  .nav-cta:hover{ transform:translateY(-1px); box-shadow:0 6px 20px -6px rgba(94,234,212,0.5); }
-  .nav-toggle{ display:none; background:none; border:none; color:var(--text); font-size:1.5rem; cursor:pointer; }
+  .nav-cta:hover { background: #a93226 !important; color: #fff !important; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--text); transition: 0.3s;
 
-  @media (max-width: 860px){
-    .nav-links{
-      position:fixed; top:64px; left:0; right:0;
-      background:var(--bg-soft);
-      flex-direction:column;
-      gap:0;
-      border-bottom:1px solid var(--line);
-      max-height:0;
-      overflow:hidden;
-      transition:max-height 0.3s ease;
-    }
-    .nav-links.open{ max-height:300px; }
-    .nav-links a{ padding:16px 32px; border-top:1px solid var(--line); }
-    .nav-toggle{ display:block; }
-    .nav-cta{ display:none; }
   }
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 72px; left: 0; right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 24px;
+    z-index: 999;
+    flex-direction: column; gap: 0;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--muted); text-decoration: none;
+    font-size: 1rem; font-weight: 500;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover, .mobile-menu a.active { color: var(--ember); }
 
-  /* ===== HERO ===== */
-  .hero{
-    padding:170px 0 90px;
-    position:relative;
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:60px;
-    align-items:center;
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    color:var(--accent);
-    border:1px solid var(--accent-soft);
-    background:rgba(94,234,212,0.06);
-    padding:6px 12px;
-    border-radius:100px;
-    margin-bottom:24px;
-  }
-  .eyebrow .pulse{
-    width:6px; height:6px; border-radius:50%;
-    background:var(--accent);
-    animation:pulse 1.8s ease-in-out infinite;
-  }
-  @keyframes pulse{
-    0%,100%{ opacity:1; box-shadow:0 0 0 0 rgba(94,234,212,0.5); }
-    50%{ opacity:0.6; box-shadow:0 0 0 5px rgba(94,234,212,0); }
-  }
-  .hero h1{
-    font-size:clamp(2.4rem, 4.6vw, 3.6rem);
-    font-weight:700;
-    line-height:1.08;
-    margin-bottom:22px;
-  }
-  .hero h1 .grad{
-    background:linear-gradient(100deg, var(--accent), #8FE3FF);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
-  .hero p{
-    font-size:1.08rem;
-    color:var(--text-dim);
-    max-width:480px;
-    margin-bottom:34px;
-  }
-  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
-  .btn-primary{
-    background:var(--accent);
-    color:#06141B;
-    padding:14px 26px;
-    border-radius:6px;
-    font-weight:600;
-    font-size:0.95rem;
-    display:inline-block;
-    transition:transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 28px -8px rgba(94,234,212,0.55); }
-  .btn-ghost{
-    border:1px solid var(--line);
-    padding:14px 26px;
-    border-radius:6px;
-    font-weight:600;
-    font-size:0.95rem;
-    color:var(--text);
-    transition:border-color 0.15s ease, background 0.15s ease;
-  }
-  .btn-ghost:hover{ border-color:var(--accent); background:rgba(94,234,212,0.05); }
+  /* ── PAGE SYSTEM ── */
+  .page { display: none; padding-top: 72px; }
+  .page.active { display: block; }
 
-  /* terminal signature element */
-  .terminal{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+  /* ── SECTION BASE ── */
+  section { padding: 96px 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ember); margin-bottom: 12px;
   }
-  .terminal-bar{
-    display:flex; align-items:center; gap:7px;
-    padding:12px 16px;
-    border-bottom:1px solid var(--line);
-    background:#10151C;
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600; line-height: 1.15;
+    margin-bottom: 20px;
   }
-  .terminal-bar span{ width:10px; height:10px; border-radius:50%; display:inline-block; }
-  .terminal-bar .r{ background:#FF5F56; }
-  .terminal-bar .y{ background:#FFBD2E; }
-  .terminal-bar .g{ background:#27C93F; }
-  .terminal-bar .title{
-    margin-left:8px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.75rem;
-    color:var(--text-dim);
+  .section-sub {
+    color: var(--muted); font-size: 1.05rem;
+    max-width: 560px; line-height: 1.7;
   }
-  .terminal-body{
-    padding:22px 20px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.84rem;
-    min-height:230px;
-  }
-  .terminal-body .line{ margin-bottom:10px; color:var(--text-dim); }
-  .terminal-body .prompt{ color:var(--accent); }
-  .terminal-body .out{ color:var(--text); }
-  .caret{
-    display:inline-block; width:7px; height:1em;
-    background:var(--accent);
-    vertical-align:text-bottom;
-    animation:blink 1s step-end infinite;
-  }
-  @keyframes blink{ 50%{ opacity:0; } }
-
-  /* ===== SECTION SHARED ===== */
-  section{ padding:100px 0; border-top:1px solid var(--line); }
-  .section-head{ margin-bottom:54px; max-width:640px; }
-  .section-eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    color:var(--accent);
-    margin-bottom:14px;
-    display:block;
-  }
-  .section-head h2{
-    font-size:clamp(1.7rem, 3vw, 2.3rem);
-    font-weight:600;
-  }
-  .section-head p{ color:var(--text-dim); margin-top:14px; font-size:1.02rem; }
-
-  /* ===== SERVICES ===== */
-  .services-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-    border-radius:12px;
-    overflow:hidden;
-  }
-  .service-card{
-    background:var(--bg-soft);
-    padding:32px 28px;
-    transition:background 0.2s ease;
-  }
-  .service-card:hover{ background:var(--panel); }
-  .service-card .tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem;
-    color:var(--accent);
-    margin-bottom:16px;
-    display:block;
-  }
-  .service-card h3{ font-size:1.12rem; margin-bottom:10px; font-weight:600; }
-  .service-card p{ color:var(--text-dim); font-size:0.92rem; }
-
-  @media (max-width: 860px){
-    .services-grid{ grid-template-columns:1fr; }
+  .divider {
+    width: 48px; height: 2px;
+    background: var(--ember);
+    margin: 24px 0;
   }
 
-  /* ===== STACK ===== */
-  .stack-row{
-    display:flex; flex-wrap:wrap; gap:10px;
-    margin-top:30px;
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-block; padding: 14px 32px;
+    font-family: var(--body); font-size: 0.875rem;
+    font-weight: 600; letter-spacing: 0.04em;
+    text-decoration: none; cursor: pointer;
+    border: none; transition: all 0.2s;
+    border-radius: 3px;
   }
-  .pill{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.82rem;
-    border:1px solid var(--line);
-    padding:9px 16px;
-    border-radius:100px;
-    color:var(--text-dim);
-    transition:border-color 0.15s ease, color 0.15s ease;
+  .btn-primary { background: var(--crimson); color: #fff; }
+  .btn-primary:hover { background: #a93226; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border);
   }
-  .pill:hover{ border-color:var(--accent); color:var(--text); }
+  .btn-outline:hover {
+    border-color: var(--ember); color: var(--ember);
+    transform: translateY(-1px);
+  }
+  .btn-gold { background: var(--crimson); color: #fff; }
+  .btn-gold:hover { background: #a93226; }
 
-  /* ===== STATS ===== */
-  .stats-bar{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    border:1px solid var(--line);
-    border-radius:12px;
-    overflow:hidden;
+  /* ════════════════════════════
+     HOME PAGE
+  ════════════════════════════ */
+
+  /* Hero */
+  .hero {
+    min-height: calc(100vh - 72px);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #fff8f0 0%, #FAFAF8 55%, #fdf5ec 100%);
+    padding: 0;
   }
-  .stat{
-    padding:30px 24px;
-    border-right:1px solid var(--line);
-    background:var(--bg-soft);
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 70% 50%, rgba(192,57,43,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(192,57,43,0.05) 0%, transparent 60%);
   }
-  .stat:last-child{ border-right:none; }
-  .stat .num{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:2.1rem;
-    font-weight:700;
-    color:var(--accent);
+  .hero-spice-ring {
+    position: absolute; right: -100px; top: 50%;
+    transform: translateY(-50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(192,57,43,0.08);
+    pointer-events: none;
   }
-  .stat .label{ color:var(--text-dim); font-size:0.85rem; margin-top:6px; }
-  @media (max-width: 700px){
-    .stats-bar{ grid-template-columns:1fr 1fr; }
-    .stat{ border-bottom:1px solid var(--line); }
+  .hero-spice-ring::before {
+    content: '';
+    position: absolute; inset: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(192,57,43,0.1);
+  }
+  .hero-spice-ring::after {
+    content: '';
+    position: absolute; inset: 80px;
+    border-radius: 50%;
+    border: 1px solid rgba(192,57,43,0.07);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto;
+    padding: 80px 48px;
+    max-width: 680px;
+    margin-left: max(48px, calc(50vw - 600px));
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ember); margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--ember);
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700; line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--ember);
+  }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted);
+    line-height: 1.7; margin-bottom: 44px;
+    max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; cursor: pointer;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
   }
 
-  /* ===== PROJECTS ===== */
-  .project-list{ display:flex; flex-direction:column; }
-  .project-row{
-    display:grid;
-    grid-template-columns:120px 1fr 200px;
-    gap:28px;
-    padding:28px 0;
-    border-bottom:1px solid var(--line);
-    align-items:start;
+  /* Why Us */
+  .why-us { background: var(--surface); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    margin-top: 60px;
+    border: 1px solid var(--border);
   }
-  .project-row:first-child{ border-top:1px solid var(--line); }
-  .project-row .pnum{
-    font-family:'IBM Plex Mono', monospace;
-    color:var(--accent);
-    font-size:0.85rem;
+  .why-card {
+    background: var(--surface2);
+    padding: 48px 36px;
+    transition: background 0.2s;
+    border-right: 1px solid var(--border);
   }
-  .project-row h3{ font-size:1.2rem; margin-bottom:8px; font-weight:600; }
-  .project-row p{ color:var(--text-dim); font-size:0.93rem; max-width:560px; }
-  .project-row .stack{
-    display:flex; flex-wrap:wrap; gap:6px;
-    justify-content:flex-end;
+  .why-card:last-child { border-right: none; }
+  .why-card:hover { background: #EDE9E2; }
+  .why-icon {
+    font-size: 2rem; margin-bottom: 20px;
+    display: block;
   }
-  .project-row .stack span{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.7rem;
-    color:var(--text-dim);
-    border:1px solid var(--line);
-    padding:4px 9px;
-    border-radius:100px;
+  .why-card h3 {
+    font-family: var(--display);
+    font-size: 1.25rem; font-weight: 600;
+    margin-bottom: 12px;
   }
-  @media (max-width: 760px){
-    .project-row{ grid-template-columns:1fr; gap:10px; }
-    .project-row .stack{ justify-content:flex-start; }
+  .why-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+
+  /* Featured Dishes */
+  .dishes-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 60px;
+  }
+  .dish-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    border-radius: 2px;
+  }
+  .dish-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.10);
+  }
+  .dish-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+    position: relative; overflow: hidden;
+  }
+  .dish-img-butter { background: linear-gradient(135deg, #fde8cc, #faf0e0); }
+  .dish-img-biryani { background: linear-gradient(135deg, #fef3cc, #fdf8e8); }
+  .dish-img-lamb { background: linear-gradient(135deg, #fdd9d7, #fef0ef); }
+  .dish-body { padding: 28px; }
+  .dish-badge {
+    display: inline-block;
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 2px;
+    margin-bottom: 12px;
+  }
+  .badge-veg { background: rgba(39,174,96,0.15); color: #27ae60; }
+  .badge-nonveg { background: rgba(192,57,43,0.15); color: #e74c3c; }
+  .badge-special { background: rgba(212,160,23,0.15); color: var(--gold); }
+  .dish-body h3 {
+    font-family: var(--display);
+    font-size: 1.2rem; font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .dish-body p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+  .dish-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .dish-price {
+    font-family: var(--display);
+    font-size: 1.3rem; color: var(--gold);
+    font-weight: 600;
   }
 
-  /* ===== TEAM ===== */
-  .team-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:24px;
+  /* Testimonials */
+  .testimonials { background: var(--surface); }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 60px;
   }
-  .team-card{
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:30px;
+  .testi-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 36px;
+    position: relative;
   }
-  .avatar{
-    width:54px; height:54px; border-radius:10px;
-    background:linear-gradient(135deg, var(--accent), #8FE3FF);
-    color:#06141B;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:700;
-    font-size:1.2rem;
-    margin-bottom:18px;
+  .testi-card::before {
+    content: '\201C';
+    font-family: var(--display);
+    font-size: 5rem; line-height: 1;
+    color: var(--crimson); opacity: 0.4;
+    position: absolute; top: 16px; left: 28px;
   }
-  .team-card h3{ font-size:1.1rem; margin-bottom:4px; }
-  .team-card .role{ color:var(--accent); font-family:'IBM Plex Mono', monospace; font-size:0.78rem; margin-bottom:14px; display:block; }
-  .team-card p{ color:var(--text-dim); font-size:0.92rem; }
-  @media (max-width: 760px){ .team-grid{ grid-template-columns:1fr; } }
+  .testi-card p {
+    color: var(--muted); font-size: 0.95rem;
+    line-height: 1.75; margin-bottom: 24px;
+    padding-top: 32px;
+    font-style: italic;
+  }
+  .testi-author {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    background: var(--surface2);
+  }
+  .testi-name { font-weight: 600; font-size: 0.9rem; }
+  .testi-loc { color: var(--muted); font-size: 0.8rem; }
+  .testi-stars { color: var(--gold); letter-spacing: 2px; font-size: 0.85rem; }
 
-  /* ===== REVIEWS ===== */
-  .review-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+  /* Reservation Banner */
+  .reserve-banner {
+    background: linear-gradient(135deg, var(--crimson) 0%, #8b1a1a 100%);
+    padding: 80px 0;
+    text-align: center;
   }
-  .review-card{
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:26px;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
+  .reserve-banner h2 {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700; margin-bottom: 12px;
   }
-  .stars{ color:var(--warn); letter-spacing:2px; font-size:0.9rem; }
-  .review-card p{ color:var(--text); font-size:0.94rem; line-height:1.65; }
-  .reviewer{ display:flex; align-items:center; gap:12px; margin-top:auto; }
-  .reviewer .ravatar{
-    width:38px; height:38px; border-radius:50%;
-    background:var(--accent-soft);
-    color:var(--accent);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:700;
-    font-size:0.85rem;
-  }
-  .reviewer .rname{ font-size:0.88rem; font-weight:600; }
-  .reviewer .rrole{ font-size:0.78rem; color:var(--text-dim); }
-  @media (max-width: 860px){ .review-grid{ grid-template-columns:1fr; } }
+  .reserve-banner p { color: rgba(245,245,240,0.75); margin-bottom: 36px; font-size: 1.05rem; }
 
-  /* ===== CONTACT / CTA ===== */
-  .cta-band{
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:60px 50px;
-    background:radial-gradient(circle at top left, rgba(94,234,212,0.08), transparent 60%), var(--bg-soft);
-    text-align:center;
+  /* ════════════════════════════
+     ABOUT PAGE
+  ════════════════════════════ */
+  .about-hero {
+    padding: 80px 0 60px;
+    background: linear-gradient(to bottom, var(--surface2), var(--bg));
+    border-bottom: 1px solid var(--border);
   }
-  .cta-band h2{ font-size:clamp(1.6rem,3vw,2.2rem); margin-bottom:16px; }
-  .cta-band p{ color:var(--text-dim); margin-bottom:30px; }
-  .cta-band .hero-actions{ justify-content:center; }
+  .about-story {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; padding: 96px 0;
+  }
+  .story-visual {
+    position: relative;
+  }
+  .story-visual-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    height: 480px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7rem;
+    position: relative;
+  }
+  .story-visual-box::after {
+    content: '';
+    position: absolute; bottom: -16px; right: -16px;
+    width: 100%; height: 100%;
+    border: 1px solid var(--crimson); opacity: 0.3;
+    pointer-events: none;
+  }
+  .story-stat {
+    position: absolute; bottom: -28px; left: -28px;
+    background: var(--crimson); padding: 20px 28px;
+  }
+  .story-stat .num {
+    font-family: var(--display);
+    font-size: 2.4rem; font-weight: 700; display: block;
+  }
+  .story-stat .label { font-size: 0.8rem; opacity: 0.8; }
 
-  footer{
-    border-top:1px solid var(--line);
-    padding:40px 0;
+  /* Team */
+  .team { background: var(--surface); }
+  .team-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 60px;
   }
-  .footer-row{
-    display:flex; justify-content:space-between; align-items:center;
-    flex-wrap:wrap; gap:16px;
+  .team-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    text-align: center;
+    transition: transform 0.25s;
   }
-  .footer-row .logo{ font-size:1rem; }
-  .footer-links{ display:flex; gap:24px; color:var(--text-dim); font-size:0.88rem; }
-  .footer-links a:hover{ color:var(--text); }
-  .footer-note{ color:var(--text-dim); font-size:0.8rem; margin-top:18px; }
+  .team-card:hover { transform: translateY(-4px); }
+  .team-avatar {
+    width: 88px; height: 88px; border-radius: 50%;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; margin: 0 auto 20px;
+    border: 2px solid var(--border);
+  }
+  .team-card h3 {
+    font-family: var(--display); font-size: 1.2rem;
+    font-weight: 600; margin-bottom: 4px;
+  }
+  .team-role { color: var(--ember); font-size: 0.8rem;
+    font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 16px; }
+  .team-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
 
-  .reveal{
-    opacity:0;
-    transform:translateY(18px);
-    transition:opacity 0.6s ease, transform 0.6s ease;
+  /* Values */
+  .values-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 40px; margin-top: 60px;
   }
-  .reveal.in{ opacity:1; transform:translateY(0); }
+  .value-item { border-top: 2px solid var(--border); padding-top: 32px; }
+  .value-item.active-val { border-color: var(--ember); }
+  .value-item h3 {
+    font-family: var(--display); font-size: 1.15rem;
+    margin-bottom: 12px;
+  }
+  .value-item p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
 
-  /* ===== SPA ROUTING ===== */
-  .page{ display:none; }
-  .page.active{ display:block; }
-  .nav-links a.active, .nav-cta.active{ color:var(--accent); }
-  .nav-cta.active{ color:#06141B; }
+  /* Timeline */
+  .timeline { background: var(--surface); }
+  .timeline-track {
+    position: relative; margin-top: 60px;
+    padding-left: 40px;
+  }
+  .timeline-track::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative; padding: 0 0 48px 48px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: -5px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--crimson);
+  }
+  .timeline-year {
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ember); margin-bottom: 8px;
+  }
+  .timeline-item h3 {
+    font-family: var(--display); font-size: 1.15rem;
+    font-weight: 600; margin-bottom: 8px;
+  }
+  .timeline-item p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+
+  /* ════════════════════════════
+     MENU PAGE
+  ════════════════════════════ */
+  .menu-hero {
+    padding: 80px 0 60px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .menu-tabs {
+    display: flex; gap: 0;
+    border: 1px solid var(--border);
+    margin-top: 48px; overflow-x: auto;
+  }
+  .menu-tab {
+    padding: 14px 28px;
+    background: none; border: none;
+    color: var(--muted); cursor: pointer;
+    font-family: var(--body); font-size: 0.875rem;
+    font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-right: 1px solid var(--border);
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .menu-tab:last-child { border-right: none; }
+  .menu-tab:hover { color: var(--text); background: var(--surface2); }
+  .menu-tab.active { background: var(--crimson); color: var(--text); }
+  .menu-section { display: none; padding: 60px 0; }
+  .menu-section.active { display: block; }
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 0;
+  }
+  .menu-item {
+    background: var(--surface);
+    padding: 28px 32px;
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 20px;
+    transition: background 0.2s;
+  }
+  .menu-item:hover { background: var(--surface2); }
+  .menu-item-info { flex: 1; }
+  .menu-item-info h4 {
+    font-family: var(--display); font-size: 1.05rem;
+    font-weight: 600; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .menu-item-info p {
+    color: var(--muted); font-size: 0.875rem; line-height: 1.6;
+  }
+  .menu-item-price {
+    font-family: var(--display); font-size: 1.15rem;
+    color: var(--gold); font-weight: 600;
+    white-space: nowrap;
+  }
+  .menu-legend {
+    margin-top: 40px; padding: 24px 32px;
+    background: var(--surface); border: 1px solid var(--border);
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.85rem; color: var(--muted);
+  }
+  .dot-veg { color: #27ae60; font-size: 1.1rem; }
+  .dot-nonveg { color: #e74c3c; font-size: 1.1rem; }
+  .dot-special { color: var(--gold); font-size: 1.1rem; }
+
+  /* ════════════════════════════
+     CONTACT PAGE
+  ════════════════════════════ */
+  .contact-hero {
+    padding: 80px 0 60px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 0;
+  }
+  .ccard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .ccard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+  }
+  .ccard-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+  .ccard h3 {
+    font-family: var(--display); font-size: 1.05rem;
+    font-weight: 600; margin-bottom: 12px; color: var(--ember);
+  }
+  .ccard p { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-bottom: 16px; }
+  .ccard-link {
+    color: var(--text); font-size: 0.8rem; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .ccard-link:hover { color: var(--ember); }
+  .hours-table { width: 100%; }
+  .hours-row {
+    display: flex; justify-content: space-between;
+    padding: 7px 0; border-bottom: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--muted);
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row span:first-child { color: var(--text); }
+  .map-placeholder {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+    color: var(--muted); font-size: 0.9rem;
+    position: relative; overflow: hidden;
+  }
+  .map-placeholder::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--surface2) 25%, var(--surface) 75%);
+    opacity: 0.5;
+  }
+  .map-pin {
+    font-size: 2rem; position: relative; z-index: 1;
+    animation: pin-bounce 1.5s ease-in-out infinite;
+  }
+  @keyframes pin-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .map-addr { position: relative; z-index: 1; font-weight: 500; color: var(--text); }
+  .social-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .social-btn {
+    padding: 10px 20px; background: var(--surface2);
+    border: 1px solid var(--border); color: var(--muted);
+    font-size: 0.8rem; font-weight: 500; cursor: pointer;
+    transition: all 0.2s; text-decoration: none; border-radius: 2px;
+  }
+  .social-btn:hover { color: var(--text); border-color: var(--ember); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 60px 0 32px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px; margin-bottom: 48px;
+  }
+  .footer-logo {
+    font-family: var(--display);
+    font-size: 1.3rem; font-weight: 700; margin-bottom: 12px;
+  }
+  .footer-logo span { color: var(--ember); }
+  .footer-tagline { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px; }
+  .footer-col h4 {
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9rem; cursor: pointer; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--text); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: var(--muted);
+  }
+  .footer-social { display: flex; gap: 16px; }
+  .footer-social a {
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-social a:hover { color: var(--ember); }
+
+  /* ── FADE-IN ANIMATION ── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .container { padding: 0 20px; }
+    section { padding: 64px 0; }
+    .hero-content { padding: 60px 20px; margin-left: 0; }
+    .hero h1 { font-size: 2.6rem; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { text-align: center; }
+    .why-grid { grid-template-columns: 1fr; gap: 0; }
+    .why-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .why-card:last-child { border-bottom: none; }
+    .dishes-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .about-story { grid-template-columns: 1fr; gap: 48px; }
+    .story-visual-box { height: 280px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; gap: 32px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .contact-cards-grid { grid-template-columns: 1fr; }
+    .map-pin { animation: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .hero-spice-ring { display: none; }
+    .hero-scroll { display: none; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .menu-tabs { flex-wrap: wrap; }
+    .menu-tab { flex: 1; text-align: center; padding: 12px 12px; font-size: 0.75rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; transition: none; }
+    .hero-scroll { animation: none; }
+    .map-pin { animation: none; }
+    .btn:hover { transform: none; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <nav>
-    <div class="logo"><span class="dot">&lt;/&gt;</span> Codeloom<span class="dot">.</span></div>
-    <div class="nav-links" id="navLinks">
-      <a href="#home" data-route="home">Home</a>
-      <a href="#services" data-route="services">Services</a>
-      <a href="#work" data-route="work">Work</a>
-      <a href="#team" data-route="team">Team</a>
-      <a href="#contact" data-route="contact">Contact</a>
-    </div>
-    <a href="#contact" class="nav-cta" data-route="contact">Start a project</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-  </nav>
-</header>
+<!-- ── NAVIGATION ── -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-logo" onclick="showPage('home')" tabindex="0">Spice <span>&</span> Ember</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('menu')" id="nav-menu">Menu</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMobile()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');closeMobile()" id="mnav-home" class="active">Home</a>
+  <a onclick="showPage('about');closeMobile()" id="mnav-about">About</a>
+  <a onclick="showPage('menu');closeMobile()" id="mnav-menu">Menu</a>
+  <a onclick="showPage('contact');closeMobile()" id="mnav-contact">Contact Us</a>
+</div>
 
-<main id="pages">
+<!-- ════════════════════════════
+     HOME PAGE
+════════════════════════════ -->
+<div class="page active" id="page-home">
 
-<section class="hero page" id="home" data-page="home">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow"><span class="pulse"></span>Available for new projects — Ahmedabad, India</span>
-      <h1>We build the web<br>app your business<br><span class="grad">actually needs.</span></h1>
-      <p>Codeloom Studio is a two-person development team shipping production-grade web platforms — from customer-facing storefronts to internal systems that run real operations.</p>
+  <!-- Hero -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-spice-ring" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Fine Dining · Ahmedabad</div>
+      <h1>Where Every<br/><em>Meal</em> Tells<br/>a Story</h1>
+      <p class="hero-sub">Authentic Indian flavors, reimagined for the modern palate. Each dish is a conversation between tradition and craft.</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary" data-route="contact">Get a free consultation</a>
-        <a href="#work" class="btn-ghost" data-route="work">See our work</a>
+        <button class="btn btn-primary" onclick="showPage('menu')">Explore the Menu</button>
+        <button class="btn btn-outline" onclick="showPage('contact')">Contact Us</button>
       </div>
     </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="r"></span><span class="y"></span><span class="g"></span>
-        <span class="title">codeloom — build.sh</span>
+    <div class="hero-scroll" aria-hidden="true">Scroll</div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="why-us">
+    <div class="container">
+      <div class="section-label">Why Spice & Ember</div>
+      <h2 class="section-title">Crafted with Purpose,<br/>Served with Warmth</h2>
+      <div class="divider"></div>
+      <div class="why-grid">
+        <div class="why-card fade-in">
+          <span class="why-icon">🌿</span>
+          <h3>Farm-Fresh Ingredients</h3>
+          <p>We source directly from partner farms in Gujarat and Rajasthan. Every spice, vegetable, and herb arrives within 24 hours of harvest — you can taste the difference.</p>
+        </div>
+        <div class="why-card fade-in">
+          <span class="why-icon">👨‍🍳</span>
+          <h3>Award-Winning Chefs</h3>
+          <p>Led by Chef Arjun Mehta, our kitchen team brings decades of experience from India's finest kitchens, elevated by international training in Paris and Tokyo.</p>
+        </div>
+        <div class="why-card fade-in">
+          <span class="why-icon">🕯️</span>
+          <h3>Intimate Ambiance</h3>
+          <p>Forty-two covers. No rush. Our dining room is designed for conversation — warm candlelight, hand-selected music, and attentive service that knows when to step away.</p>
+        </div>
       </div>
-      <div class="terminal-body" id="termBody">
-        <div class="line"><span class="prompt">$</span> <span class="out">codeloom init your-business</span></div>
+    </div>
+  </section>
+
+  <!-- Featured Dishes -->
+  <section>
+    <div class="container">
+      <div class="section-label">Chef's Selections</div>
+      <h2 class="section-title">Dishes We're Known For</h2>
+      <div class="divider"></div>
+      <p class="section-sub">A glimpse into what awaits. Our full menu changes with the season — these three have earned a permanent place at the table.</p>
+      <div class="dishes-grid">
+        <div class="dish-card fade-in">
+          <div class="dish-img dish-img-butter">🫕</div>
+          <div class="dish-body">
+            <span class="dish-badge badge-veg">🟢 Vegetarian</span>
+            <h3>Ember-Roasted Makhani</h3>
+            <p>Heirloom tomatoes slow-roasted in our tandoor, finished with cultured butter and fresh fenugreek. Served with hand-pulled laccha paratha.</p>
+            <div class="dish-footer">
+              <span class="dish-price">₹720</span>
+              <button class="btn btn-outline" style="padding:8px 18px;font-size:0.8rem;" onclick="showPage('menu')">Full Menu</button>
+            </div>
+          </div>
+        </div>
+        <div class="dish-card fade-in">
+          <div class="dish-img dish-img-biryani">🍚</div>
+          <div class="dish-body">
+            <span class="dish-badge badge-special">⚡ Chef's Special</span>
+            <h3>Dum Biryani Royale</h3>
+            <p>Aged Basmati rice sealed with saffron-infused dough, slow-cooked over charcoal for three hours. Served with raita and a shard of crispy potato.</p>
+            <div class="dish-footer">
+              <span class="dish-price">₹1,100</span>
+              <button class="btn btn-outline" style="padding:8px 18px;font-size:0.8rem;" onclick="showPage('menu')">Full Menu</button>
+            </div>
+          </div>
+        </div>
+        <div class="dish-card fade-in">
+          <div class="dish-img dish-img-lamb">🥩</div>
+          <div class="dish-body">
+            <span class="dish-badge badge-nonveg">🔴 Non-Veg</span>
+            <h3>Raan-e-Arjun</h3>
+            <p>A whole lamb leg marinated for 48 hours in yogurt, kashmiri chile, and black cardamom. Carved tableside, paired with charred corn raita.</p>
+            <div class="dish-footer">
+              <span class="dish-price">₹2,400</span>
+              <button class="btn btn-outline" style="padding:8px 18px;font-size:0.8rem;" onclick="showPage('menu')">Full Menu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-label">Guest Stories</div>
+      <h2 class="section-title">What Our Guests Say</h2>
+      <div class="divider"></div>
+      <div class="testi-grid">
+        <div class="testi-card fade-in">
+          <p>The Dum Biryani is unlike anything I've had in the city. You can smell the saffron the moment the dough seal is broken at the table. An experience, not just a meal.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">👩</div>
+            <div>
+              <div class="testi-name">Priya Nair</div>
+              <div class="testi-loc">Mumbai · Visited March 2025</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card fade-in">
+          <p>We celebrated our anniversary here and the team surprised us with a personalised dessert and handwritten note. The food was extraordinary but the warmth made it unforgettable.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">👨</div>
+            <div>
+              <div class="testi-name">Rohan & Sneha Shah</div>
+              <div class="testi-loc">Ahmedabad · Visited January 2025</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card fade-in">
+          <p>I travel for food. Spice & Ember is the reason I'll be back in Ahmedabad. Chef Arjun's tasting menu is a masterclass in restraint — every bite earns its place.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">👩</div>
+            <div>
+              <div class="testi-name">Kaveri Krishnamurthy</div>
+              <div class="testi-loc">Bengaluru · Visited February 2025</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div><!-- /home -->
+
+
+<!-- ════════════════════════════
+     ABOUT PAGE
+════════════════════════════ -->
+<div class="page" id="page-about">
+
+  <section class="about-hero">
+    <div class="container">
+      <div class="section-label">Our Story</div>
+      <h1 class="section-title">Born from Spice.<br/>Shaped by Fire.</h1>
+      <div class="divider"></div>
+      <p class="section-sub">A small restaurant with a very specific point of view: that Indian cuisine, at its finest, is among the most complex and soulful food on earth.</p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section>
+    <div class="container">
+      <div class="about-story">
+        <div class="story-left fade-in">
+          <div class="section-label">Founded 2018</div>
+          <h2 class="section-title">Chef Arjun Mehta's Vision</h2>
+          <div class="divider"></div>
+          <p style="color:var(--muted);line-height:1.8;margin-bottom:20px;">Arjun grew up in a household where cooking was conversation. His grandmother's kitchen in Jaipur was where he learned that a pinch of patience and a handful of spice could turn simple ingredients into memory.</p>
+          <p style="color:var(--muted);line-height:1.8;margin-bottom:20px;">After training at The Oberoi Centre of Learning in Delhi and a three-year stint at a Michelin-starred restaurant in Paris, he returned to India with a clear conviction: the greatest Indian food doesn't need to apologise to the world. It needs a stage worthy of it.</p>
+          <p style="color:var(--muted);line-height:1.8;margin-bottom:32px;">Spice & Ember opened in a converted merchant's haveli in Ahmedabad in 2018 with 42 covers, a hand-built tandoor, and a menu that changes every season.</p>
+          <button class="btn btn-outline" onclick="showPage('menu')">Explore Our Menu</button>
+        </div>
+        <div class="story-visual fade-in">
+          <div class="story-visual-box">👨‍🍳
+            <div class="story-stat">
+              <span class="num">7+</span>
+              <span class="label">Years of Craft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team">
+    <div class="container">
+      <div class="section-label">The People</div>
+      <h2 class="section-title">Meet the Kitchen</h2>
+      <div class="divider"></div>
+      <div class="team-grid">
+        <div class="team-card fade-in">
+          <div class="team-avatar">👨‍🍳</div>
+          <h3>Arjun Mehta</h3>
+          <div class="team-role">Executive Chef & Founder</div>
+          <p>Trained at The Oberoi Delhi and refined in Paris. Arjun leads the kitchen with a quiet intensity — he considers overcomplication a sin and believes restraint is the hardest technique to master.</p>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-avatar">👩‍🍳</div>
+          <h3>Deepa Iyer</h3>
+          <div class="team-role">Sous Chef</div>
+          <p>A graduate of the Culinary Institute of America, Deepa manages the daily kitchen rhythms with precision. She specialises in fermentation and has developed our signature lacto-fermented chutneys.</p>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-avatar">🧑‍🍳</div>
+          <h3>Karan Soni</h3>
+          <div class="team-role">Pastry Chef</div>
+          <p>Formerly of Taj Hotels, Karan reimagines Indian sweets through a fine-dining lens. His cardamom tart and rose-water panna cotta have both appeared on national best-dessert lists.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section>
+    <div class="container">
+      <div class="section-label">What We Stand For</div>
+      <h2 class="section-title">Three Commitments<br/>We Don't Compromise</h2>
+      <div class="divider"></div>
+      <div class="values-grid">
+        <div class="value-item active-val fade-in">
+          <h3>Authenticity</h3>
+          <p>We don't chase trends. Our recipes are rooted in regional Indian traditions, adapted thoughtfully — never distorted for novelty. If a technique is hundreds of years old, there's probably a reason.</p>
+        </div>
+        <div class="value-item fade-in">
+          <h3>Sustainability</h3>
+          <p>Seasonal menus aren't a marketing strategy for us — they're how we ensure our supply chain never outpaces our ethics. We compost, we minimise waste, and we pay our producers fairly.</p>
+        </div>
+        <div class="value-item fade-in">
+          <h3>Community</h3>
+          <p>Every year, 10% of our profits go to the Ahmedabad Food Scholars programme, funding culinary education for young people from underserved communities across Gujarat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline">
+    <div class="container">
+      <div class="section-label">Milestones</div>
+      <h2 class="section-title">Our Journey So Far</h2>
+      <div class="divider"></div>
+      <div class="timeline-track">
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2018</div>
+          <h3>The First Flame</h3>
+          <p>Spice & Ember opens its doors in a restored merchant's haveli in the old city of Ahmedabad. 42 covers. One tandoor. A menu of twelve dishes.</p>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2020</div>
+          <h3>National Recognition</h3>
+          <p>Named "Best New Fine Dining Restaurant" at the India Food Awards. Chef Arjun appears on the cover of Gourmet India magazine. The waiting list hits three weeks.</p>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2022</div>
+          <h3>The Private Dining Room</h3>
+          <p>We open a ten-cover private dining space for bespoke events. The tasting menu — seven courses, wine pairing, personal interaction with the chef — launches to immediate acclaim.</p>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2024</div>
+          <h3>Michelin Plate Recognition</h3>
+          <p>Spice & Ember receives a Michelin Plate — an acknowledgment of good cooking at every visit. The recognition cements our place among India's finest regional dining destinations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /about -->
+
+
+<!-- ════════════════════════════
+     MENU PAGE
+════════════════════════════ -->
+<div class="page" id="page-menu">
+
+  <section class="menu-hero">
+    <div class="container">
+      <div class="section-label">Seasonal Menu</div>
+      <h1 class="section-title">Food That Earns Its Place</h1>
+      <div class="divider"></div>
+      <p class="section-sub">Our menu changes four times a year. Every dish is here because it has passed our most rigorous test: it must be worth coming back for.</p>
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab active" onclick="showMenuTab('starters',this)" role="tab">Starters</button>
+        <button class="menu-tab" onclick="showMenuTab('mains',this)" role="tab">Mains</button>
+        <button class="menu-tab" onclick="showMenuTab('breads',this)" role="tab">Breads & Rice</button>
+        <button class="menu-tab" onclick="showMenuTab('desserts',this)" role="tab">Desserts</button>
+        <button class="menu-tab" onclick="showMenuTab('drinks',this)" role="tab">Drinks</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- Starters -->
+    <div class="menu-section active" id="menu-starters">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Smoked Chaat Taco <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Crispy lotus root shell, whipped potato, tamarind foam, date-chilli gel. A street-food moment, refined.</p>
+          </div>
+          <div class="menu-item-price">₹480</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Seekh Kebab — Coal Finish <span class="dish-badge badge-nonveg">🔴</span></h4>
+            <p>Minced lamb, charcoal-grilled, rested in herb butter. Served with green chutney and pickled onion.</p>
+          </div>
+          <div class="menu-item-price">₹620</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Beetroot Tikki <span class="dish-badge badge-veg">🟢</span> <span class="dish-badge badge-special">⚡</span></h4>
+            <p>Roasted beetroot and chana dal patties, saffron aioli, micro radish, dehydrated pomegranate.</p>
+          </div>
+          <div class="menu-item-price">₹420</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Tandoori Tiger Prawn <span class="dish-badge badge-nonveg">🔴</span></h4>
+            <p>Marinated 6 hours in ajwain and raw mango. Finished in our wood-fired tandoor. Served with kokum butter.</p>
+          </div>
+          <div class="menu-item-price">₹890</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Mushroom Galouti <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Shiitake and oyster mushroom patties so tender they dissolve on the tongue. Served on saffron-scented warqi paratha.</p>
+          </div>
+          <div class="menu-item-price">₹540</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Crab & Coconut Soup <span class="dish-badge badge-nonveg">🔴</span> <span class="dish-badge badge-special">⚡</span></h4>
+            <p>Kerala-spiced blue crab bisque, coconut milk swirl, curry leaf oil, toasted coconut flakes.</p>
+          </div>
+          <div class="menu-item-price">₹560</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mains -->
+    <div class="menu-section" id="menu-mains">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Ember-Roasted Makhani <span class="dish-badge badge-veg">🟢</span> <span class="dish-badge badge-special">⚡</span></h4>
+            <p>Heirloom tomatoes roasted in our tandoor, finished with cultured butter and fresh fenugreek.</p>
+          </div>
+          <div class="menu-item-price">₹720</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Dum Biryani Royale <span class="dish-badge badge-special">⚡</span></h4>
+            <p>Aged Basmati, saffron-infused dough seal, slow-cooked over charcoal for three hours. Serves one.</p>
+          </div>
+          <div class="menu-item-price">₹1,100</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Raan-e-Arjun <span class="dish-badge badge-nonveg">🔴</span></h4>
+            <p>Whole lamb leg, 48-hour marinade, kashmiri chile. Carved tableside. Minimum two guests. Pre-order required.</p>
+          </div>
+          <div class="menu-item-price">₹2,400</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Black Lentil Dal Maharani <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Whole black urad lentils slow-cooked for 18 hours on a wood fire. Finished with a single lick of cream.</p>
+          </div>
+          <div class="menu-item-price">₹580</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Butter Pepper Crab <span class="dish-badge badge-nonveg">🔴</span> <span class="dish-badge badge-special">⚡</span></h4>
+            <p>Mud crab, tellicherry pepper, brown butter. A Mangalorean classic served with rice flour appam.</p>
+          </div>
+          <div class="menu-item-price">₹1,680</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Jackfruit Nihari <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Raw jackfruit slow-braised for eight hours in bone-broth spices. Served in a copper pot with warqi paratha.</p>
+          </div>
+          <div class="menu-item-price">₹780</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breads & Rice -->
+    <div class="menu-section" id="menu-breads">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Laccha Paratha <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Hand-pulled whole-wheat layers, finished with cultured butter on the griddle.</p>
+          </div>
+          <div class="menu-item-price">₹140</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Garlic Naan <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Wood-fired, pulled to order, brushed with roasted garlic butter and fresh coriander.</p>
+          </div>
+          <div class="menu-item-price">₹120</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Saffron Pulao <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Aged Basmati, saffron, cardamom, crispy fried onion. A clean rice for pairing with our curries.</p>
+          </div>
+          <div class="menu-item-price">₹280</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Missi Roti <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Gram flour flatbread with carom seeds and kasuri methi, cooked on tawa and finished on live flame.</p>
+          </div>
+          <div class="menu-item-price">₹110</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Warqi Paratha <span class="dish-badge badge-veg">🟢</span> <span class="dish-badge badge-special">⚡</span></h4>
+            <p>Forty layers of laminated dough, baked and then flash-fried for a flaky exterior. Chef's favourite to make.</p>
+          </div>
+          <div class="menu-item-price">₹180</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Tandoori Roti <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Whole-wheat roti cooked directly on the wall of our clay tandoor. Simple, perfect, honest.</p>
+          </div>
+          <div class="menu-item-price">₹90</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <div class="menu-section" id="menu-desserts">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Cardamom Tart <span class="dish-badge badge-veg">🟢</span> <span class="dish-badge badge-special">⚡</span></h4>
+            <p>Green cardamom custard, charred pineapple, dark-chocolate soil. Karan's signature — it's been on the menu since day one.</p>
+          </div>
+          <div class="menu-item-price">₹380</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Rose Water Panna Cotta <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Set cream infused with Damask rose, served with a compote of summer berries and crushed pistachios.</p>
+          </div>
+          <div class="menu-item-price">₹340</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Gulab Jamun Soufflé <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>A hot soufflé flavoured with khoya and rosewater. Must be ordered at the start of the meal. Worth the wait.</p>
+          </div>
+          <div class="menu-item-price">₹420</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Kulfi Trilogy <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Three miniature kulfi: malai & saffron, mango & chilli, dark chocolate & cardamom. Served on a salt block.</p>
+          </div>
+          <div class="menu-item-price">₹360</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drinks -->
+    <div class="menu-section" id="menu-drinks">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Jaljeera Spritz <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>House-made jaljeera concentrate, sparkling water, lemon, a pinch of black salt. Perfectly refreshing.</p>
+          </div>
+          <div class="menu-item-price">₹180</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Aam Panna <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Raw mango, black salt, roasted cumin, fresh mint. Made daily when Alphonso mangoes are in season.</p>
+          </div>
+          <div class="menu-item-price">₹200</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Masala Chai — Pot for Two <span class="dish-badge badge-veg">🟢</span> <span class="dish-badge badge-special">⚡</span></h4>
+            <p>Our grandmother's recipe: loose-leaf Assam, ginger, cardamom, cinnamon, long pepper. Steeped to order.</p>
+          </div>
+          <div class="menu-item-price">₹240</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Kokum Cooler <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Sun-dried kokum, coconut water, fresh lime, ginger. A coastal classic that cuts through rich food beautifully.</p>
+          </div>
+          <div class="menu-item-price">₹190</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Thandai <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Cold-pressed almond milk, saffron, fennel, rose petals, melon seeds. Served in a chilled copper glass.</p>
+          </div>
+          <div class="menu-item-price">₹260</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Nimbu Paani — Classic <span class="dish-badge badge-veg">🟢</span></h4>
+            <p>Fresh lime, Himalayan pink salt, black salt, raw sugar. The simplest drink on the menu. Irreplaceable.</p>
+          </div>
+          <div class="menu-item-price">₹140</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-legend">
+      <div class="legend-item"><span class="dot-veg">●</span> Vegetarian</div>
+      <div class="legend-item"><span class="dot-nonveg">●</span> Non-Vegetarian</div>
+      <div class="legend-item"><span class="dot-special">⚡</span> Chef's Special — Personally recommended by Chef Arjun</div>
+      <div class="legend-item" style="color:var(--muted);">All prices are inclusive of taxes. Menu changes seasonally.</div>
+    </div>
+
+  </div>
+
+</div><!-- /menu -->
+
+
+<!-- ════════════════════════════
+     CONTACT PAGE
+════════════════════════════ -->
+<div class="page" id="page-contact">
+
+  <section class="contact-hero">
+    <div class="container">
+      <div class="section-label">Get in Touch</div>
+      <h1 class="section-title">We'd Love to<br/>Hear from You</h1>
+      <div class="divider"></div>
+      <p class="section-sub">Come visit us, give us a call, or find us on social media. We're always happy to answer questions about our menu, events, or private dining.</p>
+    </div>
+  </section>
+
+  <div class="container" style="padding-top:64px;padding-bottom:96px;">
+    <div class="contact-cards-grid">
+
+      <div class="ccard fade-in">
+        <div class="ccard-icon">📍</div>
+        <h3>Our Location</h3>
+        <p>17 Merchant's Haveli Lane,<br/>Near Lal Darwaja, Old City,<br/>Ahmedabad, Gujarat 380001</p>
+        <a class="ccard-link" href="https://maps.google.com" target="_blank">Get Directions →</a>
+      </div>
+
+      <div class="ccard fade-in">
+        <div class="ccard-icon">📞</div>
+        <h3>Call Us</h3>
+        <p>Our team is available during<br/>opening hours to answer<br/>any questions you have.</p>
+        <a class="ccard-link" href="tel:+917940012288">+91 79 4001 2288 →</a>
+      </div>
+
+      <div class="ccard fade-in">
+        <div class="ccard-icon">✉️</div>
+        <h3>Email Us</h3>
+        <p>For events, private dining,<br/>or general enquiries,<br/>drop us a message.</p>
+        <a class="ccard-link" href="mailto:hello@spiceandembar.in">hello@spiceandembar.in →</a>
+      </div>
+
+      <div class="ccard fade-in">
+        <div class="ccard-icon">🕐</div>
+        <h3>Opening Hours</h3>
+        <div class="hours-table" style="margin-top:8px;">
+          <div class="hours-row"><span>Mon – Tue</span><span>Closed</span></div>
+          <div class="hours-row"><span>Wed – Fri</span><span>12–3pm · 7–11pm</span></div>
+          <div class="hours-row"><span>Saturday</span><span>12–3pm · 7–11:30pm</span></div>
+          <div class="hours-row"><span>Sunday</span><span>Brunch 12–4pm</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="map-placeholder" style="margin-top:48px;">
+      <span class="map-pin">📍</span>
+      <span class="map-addr">Spice & Ember — Old City, Ahmedabad</span>
+      <span style="font-size:0.8rem;position:relative;z-index:1;">Get directions via Google Maps</span>
+    </div>
+
+    <div style="margin-top:40px;background:var(--surface);border:1px solid var(--border);padding:36px;">
+      <h3 style="font-family:var(--display);font-size:1.1rem;color:var(--ember);margin-bottom:12px;">Follow Our Kitchen</h3>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:20px;">Behind-the-scenes moments, seasonal specials, and new menu drops — first on Instagram.</p>
+      <div class="social-row">
+        <a class="social-btn" href="#">📸 Instagram</a>
+        <a class="social-btn" href="#">👍 Facebook</a>
+        <a class="social-btn" href="#">🐦 Twitter/X</a>
       </div>
     </div>
   </div>
-</section>
 
-<section id="services" class="page" data-page="services">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-eyebrow">// services</span>
-      <h2>What we build</h2>
-      <p>Full-stack development across the parts of the web that businesses actually run on.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <span class="tag">01 / WEB APPS</span>
-        <h3>Full-Stack Web Applications</h3>
-        <p>Custom platforms built with React, Next.js, and Node.js — fast, scalable, and built around how your business actually operates.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">02 / COMMERCE</span>
-        <h3>E-Commerce Solutions</h3>
-        <p>Storefronts with cart, checkout, and order tracking — integrated with Razorpay for secure, reliable payments.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">03 / SYSTEMS</span>
-        <h3>Internal Business Systems</h3>
-        <p>Role-based admin panels, CRMs, and operations dashboards with proper access control and audit trails.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">04 / DATA</span>
-        <h3>Real-Time Data & APIs</h3>
-        <p>REST APIs, live tracking, and reporting dashboards built on PostgreSQL, MySQL, or MongoDB depending on what fits.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">05 / AUTH & SECURITY</span>
-        <h3>Authentication & Access Control</h3>
-        <p>JWT and OAuth2-based auth, role permissions, and activity logging so the right people see the right things.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">06 / DEVOPS</span>
-        <h3>Deployment & Automation</h3>
-        <p>Cloud-init and shell-scripted server provisioning that takes deployment from hours down to minutes.</p>
-      </div>
-    </div>
+</div><!-- /contact -->
 
-    <div class="stack-row">
-      <span class="pill">React</span>
-      <span class="pill">Next.js</span>
-      <span class="pill">Node.js</span>
-      <span class="pill">Laravel</span>
-      <span class="pill">PHP</span>
-      <span class="pill">PostgreSQL</span>
-      <span class="pill">MySQL</span>
-      <span class="pill">MongoDB</span>
-      <span class="pill">Prisma</span>
-      <span class="pill">Tailwind CSS</span>
-      <span class="pill">JWT / OAuth2</span>
-      <span class="pill">Razorpay</span>
-      <span class="pill">Linux / Shell</span>
-    </div>
-  </div>
-</section>
 
-<section class="page" data-page="services">
-  <div class="wrap">
-    <div class="stats-bar">
-      <div class="stat"><div class="num">5+</div><div class="label">Projects shipped</div></div>
-      <div class="stat"><div class="num">5</div><div class="label">Industries served</div></div>
-      <div class="stat"><div class="num">90%</div><div class="label">Faster deployments via automation</div></div>
-      <div class="stat"><div class="num">1.5+ yrs</div><div class="label">Hands-on production experience</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="work" class="page" data-page="work">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-eyebrow">// selected work</span>
-      <h2>Recent projects</h2>
-      <p>A sample of platforms we've designed, built, and shipped to production.</p>
-    </div>
-    <div class="project-list">
-      <div class="project-row">
-        <div class="pnum">01</div>
-        <div>
-          <h3>Spice & Ember — Restaurant Website</h3>
-          <p>A modern fine-dining restaurant site with menu, story, and reservations sections, built fully responsive and deployed live.</p>
-          <a href="https://mayurcodinglover.github.io/Restorent/" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-block; margin-top:14px; padding:8px 16px; font-size:0.82rem;">View live site →</a>
-        </div>
-        <div class="stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
-      </div>
-      <div class="project-row">
-        <div class="pnum">02</div>
-        <div>
-          <h3>Multi-Role Gaming Management Platform</h3>
-          <p>An admin/operator/location-owner system managing machines, cash redemption, and revenue tracking across multiple US locations, with a full analytics dashboard.</p>
-        </div>
-        <div class="stack"><span>Laravel</span><span>MySQL</span><span>JS</span></div>
-      </div>
-      <div class="project-row">
-        <div class="pnum">03</div>
-        <div>
-          <h3>Regulated Cash Management System</h3>
-          <p>A government-compliant balance management platform with dual-role approval workflows, activity logging, and a full audit trail across store locations.</p>
-        </div>
-        <div class="stack"><span>Laravel</span><span>PHP</span><span>MySQL</span></div>
-      </div>
-      <div class="project-row">
-        <div class="pnum">04</div>
-        <div>
-          <h3>Paperless Lottery Platform</h3>
-          <p>Barcode-based ticket batch processing, automated winner verification, and a live reporting dashboard for sales and prize distribution.</p>
-        </div>
-        <div class="stack"><span>Next.js</span><span>React</span><span>PostgreSQL</span></div>
-      </div>
-      <div class="project-row">
-        <div class="pnum">05</div>
-        <div>
-          <h3>Kids' Personality Discovery App</h3>
-          <p>A quiz-driven platform mapping responses to personality archetypes, with a persona discovery page and an AI-assisted "Deposit Dream" feature.</p>
-        </div>
-        <div class="stack"><span>Next.js</span><span>PostgreSQL</span></div>
-      </div>
-      <div class="project-row">
-        <div class="pnum">06</div>
-        <div>
-          <h3>Online Clothing Store</h3>
-          <p>A full e-commerce build with category browsing, cart, order tracking, Razorpay checkout, and JWT authentication.</p>
-        </div>
-        <div class="stack"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="team" class="page" data-page="team">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-eyebrow">// the studio</span>
-      <h2>Who you'll work with</h2>
-      <p>No account managers, no hand-offs. You build directly with the two people writing your code.</p>
-    </div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="avatar">MH</div>
-        <h3>Mayur Hedau</h3>
-        <span class="role">Founder · Full-Stack Developer</span>
-        <p>Builds across the MERN stack, Next.js, and Laravel/PHP — with a focus on secure auth, role-based systems, and real-time data. MCA graduate, Gujarat University top ranker.</p>
-      </div>
-      <div class="team-card">
-        <div class="avatar">VK</div>
-        <h3>Vivek</h3>
-        <span class="role">Co-Founder · Full-Stack Developer</span>
-        <p>Builds across the full stack with strong proficiency in Laravel and PHP alongside the MERN ecosystem — bringing the same hands-on ownership to every project, from architecture to deployment.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="page" data-page="contact">
-  <div class="wrap">
-    <div class="cta-band">
-      <h2>Have a project in mind?</h2>
-      <p>Tell us what you're building — we'll reply with a clear scope and timeline, no pressure.</p>
-      <div class="hero-actions">
-        <a href="mailto:hedaumayur2003@gmail.com" class="btn-primary">hedaumayur2003@gmail.com</a>
-        <a href="tel:+919327741196" class="btn-ghost">+91-9327741196</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
+<!-- ── FOOTER ── -->
 <footer>
-  <div class="wrap">
-    <div class="footer-row">
-      <div class="logo"><span class="dot">&lt;/&gt;</span> Codeloom<span class="dot">.</span></div>
-      <div class="footer-links">
-        <a href="#services" data-route="services">Services</a>
-        <a href="#work" data-route="work">Work</a>
-        <a href="#team" data-route="team">Team</a>
-        <a href="#contact" data-route="contact">Contact</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Spice <span>&</span> Ember</div>
+        <p class="footer-tagline">Modern Indian fine dining in the heart of Ahmedabad's old city. Forty-two covers. One kitchen. A thousand years of culinary tradition.</p>
+        <div class="footer-social">
+          <a href="#">Insta</a>
+          <a href="#">FB</a>
+          <a href="#">X</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('menu')">Menu</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <ul>
+          <li><a>17 Merchant's Haveli Lane</a></li>
+          <li><a>Old City, Ahmedabad</a></li>
+          <li><a>Gujarat 380001</a></li>
+          <li><a>+91 79 4001 2288</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <ul>
+          <li><a>Wed–Fri: 12–3pm, 7–11pm</a></li>
+          <li><a>Saturday: 12–3pm, 7–11:30pm</a></li>
+          <li><a>Sunday: Brunch 12–4pm</a></li>
+          <li><a>Mon–Tue: Closed</a></li>
+        </ul>
       </div>
     </div>
-    <div class="footer-note">© 2026 Codeloom Studio, Ahmedabad. Built and maintained by the founders themselves.</div>
+    <div class="footer-bottom">
+      <span>© 2025 Spice & Ember. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
   </div>
 </footer>
 
 <script>
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-
-  // ===== SPA-style router (in-memory only — no history/hash changes,
-  // since sandboxed preview environments block history.pushState) =====
-  const routes = ['home', 'services', 'work', 'team', 'contact'];
-  const pages = document.querySelectorAll('.page');
-  const navAnchors = document.querySelectorAll('[data-route]');
-
-  function showPage(route){
-    if(!routes.includes(route)) route = 'home';
+  /* ── PAGE NAVIGATION ── */
+  const pages = ['home','about','menu','contact'];
+  function showPage(id) {
     pages.forEach(p => {
-      p.classList.toggle('active', p.dataset.page === route);
+      document.getElementById('page-' + p).classList.toggle('active', p === id);
+      const navEl = document.getElementById('nav-' + p);
+      const mnavEl = document.getElementById('mnav-' + p);
+      if (navEl) navEl.classList.toggle('active', p === id);
+      if (mnavEl) mnavEl.classList.toggle('active', p === id);
     });
-    navAnchors.forEach(a => {
-      a.classList.toggle('active', a.dataset.route === route);
-    });
-    const main = document.getElementById('pages');
-    if(main) main.scrollIntoView({ block: 'start' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    observeFadeIns();
   }
 
-  function navigate(route){
-    showPage(route);
+  /* ── MOBILE MENU ── */
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
   }
 
-  navAnchors.forEach(a => {
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      const route = a.dataset.route;
-      navigate(route);
-      navLinksClose();
-    });
+  /* ── MENU TABS ── */
+  function showMenuTab(id, btn) {
+    document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('menu-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+
+  /* ── FADE-IN ON SCROLL ── */
+  let observer;
+  function observeFadeIns() {
+    if (observer) observer.disconnect();
+    const els = document.querySelectorAll('.page.active .fade-in');
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => observer.observe(el));
+  }
+
+  /* ── INIT ── */
+  document.addEventListener('DOMContentLoaded', () => {
+    observeFadeIns();
   });
-
-  function navLinksClose(){
-    navLinks.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', false);
-  }
-
-  // initial load
-  showPage('home');
-
-  // mobile nav toggle
-  navToggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', open);
-  });
-
-  // terminal typing sequence
-  const termBody = document.getElementById('termBody');
-  const lines = [
-    { type: 'cmd', text: 'codeloom init your-business' },
-    { type: 'out', text: '✓ analyzing requirements' },
-    { type: 'out', text: '✓ designing system architecture' },
-    { type: 'out', text: '✓ building frontend + backend' },
-    { type: 'out', text: '✓ configuring auth & database' },
-    { type: 'out', text: '✓ deploying to production' },
-    { type: 'cmd', text: 'echo $STATUS' },
-    { type: 'success', text: 'ready for launch 🚀' }
-  ];
-
-  function typeLine(el, text, cb){
-    let i = 0;
-    const speed = 22;
-    function step(){
-      el.textContent = text.slice(0, i) + (i < text.length ? '' : '');
-      i++;
-      if(i <= text.length){ setTimeout(step, speed); }
-      else if(cb){ cb(); }
-    }
-    step();
-  }
-
-  function runSequence(){
-    termBody.innerHTML = '';
-    let idx = 0;
-    function next(){
-      if(idx >= lines.length){
-        setTimeout(() => { runSequence(); }, 1800);
-        return;
-      }
-      const item = lines[idx];
-      const row = document.createElement('div');
-      row.className = 'line';
-      if(item.type === 'cmd'){
-        row.innerHTML = '<span class="prompt">$</span> <span class="out"></span>';
-        const span = row.querySelector('.out');
-        termBody.appendChild(row);
-        typeLine(span, item.text, () => { idx++; setTimeout(next, 250); });
-      } else {
-        row.style.color = item.type === 'success' ? '#5EEAD4' : '#8B97A6';
-        row.innerHTML = '<span></span>';
-        const span = row.querySelector('span');
-        termBody.appendChild(row);
-        typeLine(span, item.text, () => { idx++; setTimeout(next, 180); });
-      }
-      termBody.scrollTop = termBody.scrollHeight;
-    }
-    next();
-  }
-
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    termBody.innerHTML = lines.map(l => `<div class="line out">${l.text}</div>`).join('');
-  } else {
-    runSequence();
-  }
-
-  // scroll reveal
-  document.querySelectorAll('section .wrap > *').forEach(el => el.classList.add('reveal'));
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
-
 </body>
 </html>
